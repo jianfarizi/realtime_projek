@@ -24,7 +24,7 @@ class Laporancreate extends Component
         'name' => 'required|',
         'desc' => 'required',
         'category' => 'required',
-        'image_file' => 'required',
+        'image_file' => 'required|',
     ];
     public function render()
     {
@@ -35,18 +35,18 @@ class Laporancreate extends Component
     {
         $user = $request->user()->id;
        $validated = $this->validate();
-       if($this->image_file){
-            $validated['image_file'] = $this->image_file->store('uploads', 'public');
-       }
+     
+            $image_file = $this->image_file->store('image_file','public');
+       
        
         Laporan::create([
             'id_user' => Auth::id(),
             'name' => $this->name,
             'desc' => $this->desc,
             'category' => $this->category,
-            'image_file' => $this->image_file
+            'image_file' => $image_file
         ]);
-      
+        session()->flash('success', 'data berhasil dikirim');
         
        
 

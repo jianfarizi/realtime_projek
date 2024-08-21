@@ -7,7 +7,12 @@
            <h3 class="card-title">Laporan</h3>
          </div>
          <div class="card-body">
-        
+         @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success')}}
+                    <button type="button" class="btn-close"  data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
           <form wire:submit.prevent="store">
             <div class="form-group">
               <label for="inputName">Nama Laporan</label>
@@ -32,7 +37,7 @@
               <input type="file" id="inputClientCompany" wire:model="image_file" @error('iamge_file') is-invalid @enderror class="form-control" placeholder="Masukan foto">
             </div>
               <div class="">
-                <button type="submit" class="btn btn-primary" wire:click="store">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
           </form>
 

@@ -1,8 +1,17 @@
 <div>
-      <div class="col-md-12">
+@include('livewire.laporanshow')
+
+<div class="container">
+      <div class="col">
             <div class="card">
               <!-- /.card-header -->
               <div class="card-body">
+                @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success')}}
+                    <button type="button" class="btn-close"  data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <table class="table">
                   <thead>
                     <tr>
@@ -17,27 +26,24 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($laporans as $laporan)
+                    @foreach ($laporans as $index => $laporan)
                     
                     <tr>
                       <td>{{  $index + 1}}</td>
-                      <td></td>
-                      <td>Kerusakan Jalur</td>
-                      <td>pppppppppppp</td>
-                      <td>Jalur</td>
-                      <td>image</td>
-                      <td><span class="btn btn-danger" >pending</span></td>
+                      <td>{{$laporan->users->name }}</td>
+                      <td>{{ $laporan->name }}r</td>
+                      <td>{{ Str::limit($laporan->desc, 5)}}</td>
+                      <td>{{ $laporan->category}}</td>
+                      <td><img src="{{ asset('storage/' . $laporan->image_file)  }}" width="50px"alt=""></td>
+                      <td>@livewire('laporan_update', ['laporanId' => $laporan->id, 'status' => $laporan->status], key($laporan->id))</td>
                       <td class="text-right align-middle"> 
                         <div class="btn-group btn-group-sm">
-                           <a href="" class="btn btn-info">
-                            <i class="fas fa-pen"></i>
-                           </a>
-                           <a href="" class="btn btn-danger">
+                           <button class="btn btn-danger" wire:click="delete({{ $laporan->id}})">
                             <i class="fas fa-trash"></i>
-                           </a>
-                            <a href="" class="btn btn-success">
-                            <i class="fas fa-eye"></i>
-                           </a>
+                           </button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#laporanModal" wire:click="laporandetail({{ $laporan->id }})">
+                                        <i class="fas fa-eye"></i>
+                           </button>
                         </div>
                       </td>
                     </tr>
@@ -53,4 +59,9 @@
 
         
           </div>
+        
+
+
+</div>        
+
 </div>

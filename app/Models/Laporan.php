@@ -17,4 +17,9 @@ class Laporan extends Model
         'image_file',
         'status'
     ];
+
+     public function users()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

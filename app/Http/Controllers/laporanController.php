@@ -8,14 +8,18 @@ class laporanController extends Controller
 {
     public function index()
     {
-        $laporan = Laporan::paginate(10);
+        $laporans = Laporan::with('users')->paginate(10);
 
-        return view('admin.laporan.index');
+        return view('admin.laporan.index', compact('laporans'));
     }
 
     public function create()
     {
          return view('admin.laporan.create');
+    }
+    public function show()
+    {
+         return view('admin.laporan.show');
     }
 
 }
