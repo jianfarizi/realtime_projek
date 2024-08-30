@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Galeri; 
+use App\Events\GaleriEvent;
+use GaleriEvent as GlobalGaleriEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -97,6 +99,9 @@ class GaleriController extends Controller
 
     return redirect()->route('galeri')->with('error', 'Data tidak ditemukan');
     }
-
+     public function tes()
+     {
+        event(new GaleriEvent('hallo'));
+     }
     
 }

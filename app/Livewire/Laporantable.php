@@ -84,5 +84,7 @@ class Laporantable extends Component
              return redirect()->to('/laporan');
         }
     }
+
+   
    
 }

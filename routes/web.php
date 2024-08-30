@@ -22,6 +22,7 @@ route::get('register', [registerController::class, 'index'])->name('register');
 route::post('register', [registerController::class, 'store'])->name('register.store');
 
 route::get('galeri', [GaleriController::class, 'index'])->name('galeri');
+route::get('tes', [GaleriController::class, 'tes']);
 route::get('galeri/create', [GaleriController::class, 'create'])->name('galeri.create');
 route::post('galeri/', [GaleriController::class, 'store'])->name('galeri.store');
 route::get('galeri/edit/{id}', [GaleriController::class, 'edit'])->name('galeri.edit');

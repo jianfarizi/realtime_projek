@@ -13,4 +13,6 @@ class LandingController extends Controller
         $pendakiblacklist = Pendaki::where('status', 'BlackList')->paginate(10);
         return view('landing.home.landing', compact('pendaki','pendakiblacklist'));
     }
+
+    
 }

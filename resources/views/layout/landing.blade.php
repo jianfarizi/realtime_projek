@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/landing/css/style.css" />
     <link rel="stylesheet" href="/landing/css/responsive.css" />
     <link rel="stylesheet" href="/landing/demos/travel-agency/travel-agency.css" />
+    
 </head>
 
 <body data-mobile-nav-style="classic">
