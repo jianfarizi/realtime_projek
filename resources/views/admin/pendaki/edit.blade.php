@@ -51,8 +51,9 @@
                  <div class="form-group">
                     <label for="inputName">Status</label>
                      <select name="status" value="{{ $pendaki->status}}" class="form-select">
-                        <option selected >None</options>
-                        <option value="blacklist">BlackList</option>
+                        <option selected >Check-In</options>
+                        <option value="Check-Out">Check-Out</option>
+                        <option value="BlackList">BlackList</option>
                     </select>
                 </div>
                 <div class="">

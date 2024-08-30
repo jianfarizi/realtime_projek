@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Laporan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\registerController;
@@ -7,11 +7,13 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\laporanController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\PendakiController;
+use App\Http\Controllers\SampahController;
+use App\Http\Controllers\LandingController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+route::get('/', [LandingController::class, 'index']);
 
 route::get('login', [loginController::class, 'index'])->name('login');
 route::post('login', [loginController::class, 'login'])->name('login.auth');
@@ -36,6 +38,13 @@ route::get('pendaki/edit/{id}', [PendakiController::class, 'edit'])->name('penda
 route::put('pendaki/{id}', [PendakiController::class, 'update'])->name('pendaki.update');
 route::delete('pendaki/{id}', [PendakiController::class, 'destroy'])->name('pendaki.destroy');
 
+route::get('sampah', [SampahController::class, 'index'])->name('sampah');
+route::get('sampah/create', [SampahController::class, 'create'])->name('sampah.create');
+route::post('sampah/', [SampahController::class, 'store'])->name('sampah.store');
+route::delete('sampah/{id}', [SampahController::class, 'destroy'])->name('sampah.destroy');
+
 route::get('laporan', [laporanController::class, 'index'])->name('laporan');
 route::get('laporan1', [laporanController::class, 'create'])->name('laporan1');
+// route::get('laporan/', [laporanController::class, 'store'])->name('laporan.store');
 route::get('laporan/show', [laporanController::class, 'show'])->name('laporan/show');
+Route::get('/laporan-data', [LaporanController::class, 'getLaporanData'])->name('laporan.data');

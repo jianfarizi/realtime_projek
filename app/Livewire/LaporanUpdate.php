@@ -18,12 +18,15 @@ class LaporanUpdate extends Component
     
     public function updatestatus($newstatus)
     {
+      $laporan = Laporan::find($this->laporanId);
+        
         $laporan = Laporan::find($this->laporanId);
         $laporan->status = $newstatus;
         $laporan->save();
 
         $this->status = $newstatus;
         $this->setstatus();
+        
     }
 
     public function setstatus()
