@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Galeri; 
 use App\Events\GaleriEvent;
-use GaleriEvent as GlobalGaleriEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
