@@ -1,15 +1,12 @@
 import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 
-window.Pusher = require('pusher-js');
-
-window.Echo = new Echo({
+const options = {
     broadcaster: 'pusher',
-    key: '64c73ce8d1e521af7511',
-    cluster: 'ap1',
-    forceTLS: true
-});
+    key: '64c73ce8d1e521af7511'
+}
 
-
+<<<<<<< HEAD
 
 
 window.Echo.channel('my-channel')
@@ -24,3 +21,9 @@ window.Echo.channel('my-channel')
  */
 
 import './echo';
+=======
+window.Echo = new Echo({
+    ...options,
+    client: new Pusher(options.key, options)
+});
+>>>>>>> 88d42888895142d044f3e5c3d699318870fdf934
