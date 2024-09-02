@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
     @stack('styles')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- pushher -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
@@ -46,7 +46,7 @@
 
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
+            notif((data));
         });
     </script>
     <!-- endpusher -->
@@ -136,7 +136,8 @@
     <!-- <script src="dist/js/pages/dashboard.js"></script> -->
 
     @stack('scripts')
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+   
 </body>
 
 </html>

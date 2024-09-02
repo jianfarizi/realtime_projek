@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Galeri; 
-use App\Events\GaleriEvent;
-use GaleriEvent as GlobalGaleriEvent;
+
+use App\Events\MyEvent;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -13,7 +13,7 @@ class GaleriController extends Controller
     public function index()
     {
         $galeri = Galeri::get();
-
+       
         return view('admin.galeri.index', compact('galeri'));
     }
 
@@ -40,11 +40,16 @@ class GaleriController extends Controller
             $image->storeAs('public/image_file', $image->hashName());
             $req['image_file'] = $image->hashName();
         }
-        Galeri::create($req);
+        $galeri=Galeri::create($req);
 
-        event(new MyEvent('hallo'));
+        $galeri1 = [
+            'name' => $galeri->name,
+            'image_file' => $galeri->image_file,
+            'message' => Auth::user()->name . ' memasukan laporan'
+        ];
+        event(new MyEvent($galeri1));
 
-        return  redirect()->route('galeri')->with(['succes', 'data berhasil disimpan']);
+        return  redirect()->back()->with(['succes', 'data berhasil disimpan']);
     }
 
     public function edit($id)
@@ -103,6 +108,8 @@ class GaleriController extends Controller
     public function tes()
     {
         event(new MyEvent('Edwin Farid'));
-        \Log::info('MyEvent has been fired');
+        
+
+        
     }
 }

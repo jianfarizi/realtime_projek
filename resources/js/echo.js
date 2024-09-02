@@ -18,4 +18,3 @@ window.Echo = new Echo({
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     forceTLS: true
 });
->>>>>>> 88d42888895142d044f3e5c3d699318870fdf934
