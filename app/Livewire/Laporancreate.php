@@ -13,8 +13,6 @@ class Laporancreate extends Component
 {
     use WithFileUploads;
 
-
-
     public $name;
     public $desc;
     public $category;
@@ -30,21 +28,21 @@ class Laporancreate extends Component
     {
         return view('livewire.laporancreate');
     }
-public function resetForm()
-{
-    $this->name = '';
-    $this->desc = '';
-    $this->category = '';
-    $this->image_file = null;
-}
+    public function resetForm()
+    {
+        $this->name = '';
+        $this->desc = '';
+        $this->category = '';
+        $this->image_file = null;
+    }
     public function store(Request $request)
     {
         $user = $request->user()->id;
-       $validated = $this->validate();
-     
-            $image_file = $this->image_file->store('image_file','public');
-       
-       
+        $validated = $this->validate();
+
+        $image_file = $this->image_file->store('image_file', 'public');
+
+
         Laporan::create([
             'id_user' => Auth::id(),
             'name' => $this->name,
@@ -52,11 +50,9 @@ public function resetForm()
             'category' => $this->category,
             'image_file' => $image_file
         ]);
-        session()->flash('success', 'data berhasil dikirim');
         
-         $this->resetForm();
+        $this->resetForm();
 
+        session()->flash('success', 'data berhasil dikirim');
     }
 }
-
-
