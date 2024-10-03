@@ -24,7 +24,7 @@ route::post('register', [registerController::class, 'store'])->name('register.st
 
 
 
-Route::middleware('checkauth')->group(function () {
+Route::middleware('checkauth:admin')->group(function () {
     Route::get('galeri', [GaleriController::class, 'index'])->name('galeri');
     Route::get('tes', [GaleriController::class, 'tes']);
     Route::get('galeri/create', [GaleriController::class, 'create'])->name('galeri.create');
@@ -46,9 +46,12 @@ Route::middleware('checkauth')->group(function () {
     Route::get('sampah/create', [SampahController::class, 'create'])->name('sampah.create');
     Route::post('sampah/', [SampahController::class, 'store'])->name('sampah.store');
     Route::delete('sampah/{id}', [SampahController::class, 'destroy'])->name('sampah.destroy');
-
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
+    
+    });
+Route::middleware('checkauth:user')->group(function () {
     Route::get('laporan1', [LaporanController::class, 'create'])->name('laporan1');
     Route::get('laporan/show', [LaporanController::class, 'show'])->name('laporan/show');
     Route::get('/laporan-data', [LaporanController::class, 'getLaporanData'])->name('laporan.data');
+
 });
