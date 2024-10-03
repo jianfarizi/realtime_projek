@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Laporan;
+
 class LaporanUpdate extends Component
 {
     public $status;
@@ -14,19 +15,17 @@ class LaporanUpdate extends Component
     {
         $this->laporanId = $laporanId;
         $this->status = $status;
-    }
-    
-    public function updatestatus($newstatus)
-    {
-      $laporan = Laporan::find($this->laporanId);
-        
-        $laporan = Laporan::find($this->laporanId);
-        $laporan->status = $newstatus;
-        $laporan->save();
-
-        $this->status = $newstatus;
         $this->setstatus();
-        
+    }
+
+    public function updatestatus()
+    {
+        $laporan = Laporan::find($this->laporanId);
+        if ($laporan) {
+            $laporan->status = $this->status;
+            $laporan->save();
+            $this->setstatus();
+        }
     }
 
     public function setstatus()
@@ -35,16 +34,17 @@ class LaporanUpdate extends Component
             case 'pending':
                 $this->setstatus = 'btn btn-danger';
                 break;
-            case 'procecing':
+            case 'processing':
                 $this->setstatus = 'btn btn-warning';
                 break;
             case 'done':
-                $this->setstatus = 'btn btn-succes';
+                $this->setstatus = 'btn btn-success';
                 break;
             default:
                 $this->setstatus = 'btn btn-secondary';
         }
     }
+
     public function render()
     {
         return view('livewire.laporan-update');
