@@ -50,8 +50,7 @@ class GaleriController extends Controller
             'image_file' => $galeri->image_file,
             'message' => Auth::user()->name . ' memasukan laporan'
         ];
-        event(new MyEvent($galeri1));
-
+        
         return  redirect()->back()->with(['succes', 'data berhasil disimpan']);
     }
 
