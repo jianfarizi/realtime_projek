@@ -30,7 +30,13 @@ class Laporancreate extends Component
     {
         return view('livewire.laporancreate');
     }
-
+public function resetForm()
+{
+    $this->name = '';
+    $this->desc = '';
+    $this->category = '';
+    $this->image_file = null;
+}
     public function store(Request $request)
     {
         $user = $request->user()->id;
@@ -48,7 +54,7 @@ class Laporancreate extends Component
         ]);
         session()->flash('success', 'data berhasil dikirim');
         
-       
+         $this->resetForm();
 
     }
 }

@@ -46,7 +46,7 @@
                       <th>Action</th>
       </tr>
   </thead>
-  <tbody>
+  <tbody id="content">
     @foreach ($pendaki as $index => $pendaki)
     
     <tr>

@@ -5,20 +5,32 @@ namespace App\Livewire;
 use App\Models\Laporan;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
-
+use Livewire\WithPagination;
 
 
 
 class Laporantable extends Component
 {
 //  public $image_file;
- public $name, $pelapor, $desc, $category, $image_file, $id, $status;
+    public $name, $pelapor, $desc, $category, $image_file, $id, $status;
+   
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
+    protected $listener = [
+        'refresh-me' => '$refresh',
+    ];
+
+   
+  
     public function render()
     {
+        $laporans = Laporan::all(); 
+        
         return view('livewire.laporantable',[
-            'laporans' => Laporan::orderBy('id','desc')->paginate(10)
+            'laporans' => Laporan::orderBy('id','desc')->paginate(5)
         ]);
+
     }
 
     // public function mount($image_file)
@@ -65,11 +77,14 @@ class Laporantable extends Component
             $this->status = $laporan->status;
             $this->image_file = asset('storage/' . $laporan->image_file);
 
+       
         }
 
         else{
              return redirect()->to('/laporan');
         }
     }
+
+   
    
 }

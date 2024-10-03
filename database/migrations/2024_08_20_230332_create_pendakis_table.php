@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('telp');
             $table->bigInteger('ktp');
-            $table->string('status')->default('none');
+            $table->string('status')->default('Check-In');
             $table->timestamps();
         });
     }
