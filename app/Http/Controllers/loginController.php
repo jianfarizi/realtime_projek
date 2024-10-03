@@ -24,11 +24,22 @@ class loginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard');
+            return $this->authenticated($request, Auth::user());
+            
         }
 
         return redirect()->back()->with('eror', 'Email atau password anda salah');
 
 
      }
+    // Di loginController, setelah login berhasil:
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->type == 1) {
+            return redirect()->route('laporan1'); // Arahkan User ke laporan
+        } elseif ($user->type == 2) {
+            return redirect()->route('dashboard'); // Arahkan Admin ke dashboard
+        }
+    }
+
 }
